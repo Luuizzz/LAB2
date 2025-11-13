@@ -1,0 +1,566 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package lab2;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
+/**
+ *
+ * @author juluc
+ */
+
+
+
+public class FrameCryptoBreaker extends javax.swing.JFrame {
+    int pistas = 0;
+    int palabrasAdivinadas = 0;
+    int tiempo=0;    
+    int p=0;
+    int puntaje = 0;
+    boolean dif = false;
+    boolean comprobante = true;
+    javax.swing.Timer timerPregunta;
+    Random r = new Random();
+    int tamaño = 0;
+    int []v;
+    String []palabra;
+    String[] listaCifrada;
+    public FrameCryptoBreaker() {
+        initComponents();
+        timerPregunta = new Timer(1000, new ActionListener() {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (tiempo <= 0) {
+                timerPregunta.stop();         
+            } else {
+                tiempo--; 
+                LabelTiempo.setText(String.valueOf(tiempo));
+            }
+        }
+    });
+    }
+    
+    public String[] encriptar(String[] listaPalabras, int clave) {
+        listaCifrada = new String[listaPalabras.length];
+    for (int i = 0; i < listaPalabras.length; i++) {   
+        String pal = listaPalabras[i]; 
+        char[] m = pal.toCharArray();        
+        char[] cifrado = new char[m.length];       
+        for (int j = 0; j < m.length; j++) {           
+            char c = m[j];
+            if (Character.isLetter(c)) {
+                char CC = (char) (c + clave);                
+                if (CC > 'Z') {
+                    CC = (char) (CC - 26);
+                }
+                cifrado[j] = CC;
+                
+            } else {
+                cifrado[j] = c; 
+            }
+        }
+        String palCifrada = new String(cifrado);
+        listaCifrada[i] = palCifrada;
+    }
+
+    return listaCifrada;
+}
+
+        public String ObtenerEvento(int n){
+        switch (n) {
+            case 1: return "AMENAZA";
+            case 2: return "ANALIZAR";
+            case 3: return "ATAQUE";
+            case 4: return "BLOQUEAR";
+            case 5: return "BOTNET";
+            case 6: return "CIFRADO";
+            case 7: return "CODIGO";
+            case 8: return "CORREO";
+            case 9: return "VECTOR";
+            case 10: return "CLAVE";
+            case 11: return "DATOS";
+            case 12: return "DEFENSA";
+            case 13: return "ENCRIPTAR";
+            case 14: return "ENGANO";
+            case 15: return "EVENTO";
+            case 16: return "FIREWALL";
+            case 17: return "FORENSE";
+            case 18: return "HASH";
+            case 19: return "INTRUSO";
+            case 20: return "ALGORITMO";
+            case 21: return "MALWARE";
+            case 22: return "MATRIZ";
+            case 23: return "PHISHING";
+            case 24: return "OPTIMIZACION";
+            case 25: return "PUERTO";
+            case 26: return "RED";
+            case 27: return "RIESGO";
+            case 28: return "TROYANO";
+            case 29: return "USUARIO";
+            case 30: return "VIRUS";
+            default:
+                throw new AssertionError(); 
+        }
+    }
+        
+    public void CrearLista(){
+        v = new int[tamaño];
+        palabra = new String[tamaño];
+        
+        for (int i = 0; i < tamaño; i++) {
+            int num = r.nextInt(30) + 1;
+            boolean repetido = false;
+            
+            for (int j = 0; j < i; j++) {
+                if(v[j] == num){
+                    repetido = true;
+                    break;
+                }
+            }
+            
+            if(repetido){
+                i--;
+            }else{
+                v[i] = num;
+                palabra[i] = (ObtenerEvento(num));
+            }
+            
+        }
+        
+        LstPal.setListData(encriptar(palabra,p));
+    }
+    
+    public void mostrarPista() {
+ 
+    switch (pistas) {
+        case 0:
+            JOptionPane.showMessageDialog(null, "Pista 1/3\n" +"Pista: Todas las letras se están rodando " + p + " posiciones a la derecha.");
+            break;
+        
+        case 1: 
+        case 2:
+            int numAleatorio1 = r.nextInt(26); 
+            char o = (char) ('A' + numAleatorio1);
+            
+            // 3. Encripta esa letra aleatoria
+            char c = (char) (o + p);
+            if (c > 'Z') {
+                c = (char) (c - 26);
+            }
+            
+            JOptionPane.showMessageDialog(null, "Pista "+ (pistas+1) +"/3\n" +"Ejemplo de letra: La '" + o + "' se convierte en '" + c + ".");
+            break;
+            
+    }
+    }
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        LstPal = new javax.swing.JList<>();
+        BttnIniciar = new javax.swing.JButton();
+        BttnSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        BttnReiniciar = new javax.swing.JButton();
+        TxtIntento = new javax.swing.JTextField();
+        BttnComprobar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        LabelDif = new javax.swing.JLabel();
+        LabelTiempo = new javax.swing.JLabel();
+        LabelPuntaje = new javax.swing.JLabel();
+        BttnPista = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("CryptoBreaker");
+
+        jScrollPane1.setViewportView(LstPal);
+
+        BttnIniciar.setText("Iniciar");
+        BttnIniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BttnIniciarMouseClicked(evt);
+            }
+        });
+
+        BttnSalir.setText("Salir");
+        BttnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BttnSalirMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setText("Tiempo:");
+
+        jLabel3.setText("Puntaje:");
+
+        BttnReiniciar.setText("Reiniciar");
+        BttnReiniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BttnReiniciarMouseClicked(evt);
+            }
+        });
+
+        TxtIntento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtIntentoActionPerformed(evt);
+            }
+        });
+
+        BttnComprobar.setText("Comprobar");
+        BttnComprobar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BttnComprobarMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setText("Dificultad:");
+
+        LabelDif.setText("            ");
+
+        LabelTiempo.setText("            ");
+
+        LabelPuntaje.setText("            ");
+
+        BttnPista.setText("Pista");
+        BttnPista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BttnPistaMouseClicked(evt);
+            }
+        });
+        BttnPista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BttnPistaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(3, 3, 3)
+                        .addComponent(LabelDif)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(LabelTiempo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LabelPuntaje))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BttnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BttnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BttnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(TxtIntento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BttnComprobar)
+                            .addComponent(BttnPista))))
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(LabelDif)
+                    .addComponent(LabelTiempo)
+                    .addComponent(LabelPuntaje))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(BttnPista)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BttnComprobar)
+                    .addComponent(TxtIntento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BttnReiniciar)
+                    .addComponent(BttnSalir)
+                    .addComponent(BttnIniciar))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void TxtIntentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIntentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIntentoActionPerformed
+
+    private void BttnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnSalirMouseClicked
+        int confirmar = JOptionPane.showConfirmDialog(null,"De verdad deseas salir?", "Confirmar salida",JOptionPane.YES_NO_OPTION);
+        if(confirmar == JOptionPane.YES_OPTION){
+        this.dispose();
+        }
+    }//GEN-LAST:event_BttnSalirMouseClicked
+
+    private void BttnIniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnIniciarMouseClicked
+        if(dif!= true){
+            comprobante = false;
+            String mensaje = "Elige una dificultad:\n1. Fácil\n2. Medio\n3. Difícil";
+            String opcion = JOptionPane.showInputDialog(null, mensaje, "Dificultad", JOptionPane.QUESTION_MESSAGE);
+
+            if (opcion != null) {
+                if (opcion.equals("1")) {
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: Fácil");    
+                    dif = true;
+                    LabelDif.setText("Fácil");
+                    tamaño = 10;
+                    p=1;
+                    tiempo=90;
+                    CrearLista();
+                    LabelTiempo.setText(String.valueOf(tiempo)); 
+                    timerPregunta.start(); 
+                    palabrasAdivinadas = 0;
+                    pistas = 0;
+
+                                       
+                } else if (opcion.equals("2")) {
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: Medio");
+                    dif = true;
+                    LabelDif.setText("Media");
+                    tamaño = 20;
+                    p=2;
+                    tiempo=60;
+                    CrearLista();
+                    LabelTiempo.setText(String.valueOf(tiempo)); 
+                    timerPregunta.start(); 
+                    palabrasAdivinadas = 0;
+                    pistas = 0;
+                    
+                    
+                } else if (opcion.equals("3")) {
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: Difícil");
+                    dif = true;
+                    LabelDif.setText("Difícil");
+                    tamaño = 30;                   
+                    p=r.nextInt(25) + 1;
+                    tiempo=30;
+                    CrearLista();
+                    LabelTiempo.setText(String.valueOf(tiempo)); 
+                    timerPregunta.start(); 
+                    palabrasAdivinadas = 0;
+                    pistas = 0;
+
+                    
+                    
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Opción no válida, intenta de nuevo.");
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No seleccionaste ninguna dificultad.");
+
+                
+            }
+            
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya has seleccionado una dificultad. Dale a Reiniciar para seleccionar otra.");
+
+        }
+        
+        
+
+
+        
+        
+    }//GEN-LAST:event_BttnIniciarMouseClicked
+
+    private void BttnReiniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnReiniciarMouseClicked
+        if(comprobante == false){
+            int confirmar2 = JOptionPane.showConfirmDialog(null, "De verdad deseas reiniciar?", "Confirmar reinicio", JOptionPane.YES_NO_OPTION);
+            if(confirmar2 == JOptionPane.YES_OPTION){
+                puntaje = 0;
+                dif = false;
+                v = null;
+                palabra = null;
+                tamaño = 0;
+                LstPal.setListData(new String[0]);
+                timerPregunta.stop();
+                LabelTiempo.setText("");
+                LabelPuntaje.setText("");
+                LabelDif.setText("");
+                TxtIntento.setText("");
+                comprobante = true;
+                palabrasAdivinadas = 0;
+                pistas = 0;
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay un juego en proceso.");
+        }
+    }//GEN-LAST:event_BttnReiniciarMouseClicked
+
+    private void BttnComprobarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnComprobarMouseClicked
+       if (!timerPregunta.isRunning()) {
+        JOptionPane.showMessageDialog(null, "Debes iniciar el juego.");
+        return;
+    }
+    timerPregunta.stop();
+    int fila = LstPal.getSelectedIndex();
+    if (fila == -1) { 
+        JOptionPane.showMessageDialog(null, "Debes seleccionar una palabra de la lista.");
+        timerPregunta.start(); 
+        return; 
+    }
+    
+    String intento = TxtIntento.getText(); 
+    
+    if (palabra[fila] == null) {
+        JOptionPane.showMessageDialog(null, "Ya has adivinado esa palabra.");
+        timerPregunta.start(); 
+        return; 
+    }   
+    if (intento.equalsIgnoreCase(palabra[fila])) {
+        puntaje += tiempo; 
+        LabelPuntaje.setText(String.valueOf(puntaje));
+        palabra[fila] = null; 
+        listaCifrada[fila] = ""; 
+        LstPal.setListData(listaCifrada);
+        palabrasAdivinadas++;
+        TxtIntento.setText(""); 
+        
+        if (palabrasAdivinadas == tamaño) {
+            JOptionPane.showMessageDialog(null, "¡FELICITACIONES!\n" + 
+                                                "Has descifrado todas las palabras.\n" +
+                                                "Puntaje Final: " + puntaje);            
+        } else {
+            
+            JOptionPane.showMessageDialog(null, "¡Correcto!");
+            if (LabelDif.getText().equals("Fácil")) tiempo = 90;
+            else if (LabelDif.getText().equals("Media")) tiempo = 60;
+            else if (LabelDif.getText().equals("Difícil")) tiempo = 30;
+            LabelTiempo.setText(String.valueOf(tiempo));
+            timerPregunta.start();
+        }
+        
+    } else {
+        
+        puntaje -= 10;
+        LabelPuntaje.setText(String.valueOf(puntaje));
+        JOptionPane.showMessageDialog(null, "Incorrecto. Intenta de nuevo.");
+        timerPregunta.start();
+    }
+
+
+    }//GEN-LAST:event_BttnComprobarMouseClicked
+
+    private void BttnPistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttnPistaActionPerformed
+        if (!timerPregunta.isRunning()) {
+            JOptionPane.showMessageDialog(null, "Debes iniciar el juego.");
+            return;
+            
+        }
+        timerPregunta.stop();
+            if (pistas >= 3) {
+        JOptionPane.showMessageDialog(null, "¡Ya has usado tus 3 pistas!");
+        timerPregunta.start();
+        return;
+    }
+            mostrarPista();
+            pistas++;
+            timerPregunta.start();  
+    }//GEN-LAST:event_BttnPistaActionPerformed
+
+    private void BttnPistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnPistaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BttnPistaMouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrameCryptoBreaker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrameCryptoBreaker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrameCryptoBreaker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrameCryptoBreaker.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrameCryptoBreaker().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BttnComprobar;
+    private javax.swing.JButton BttnIniciar;
+    private javax.swing.JButton BttnPista;
+    private javax.swing.JButton BttnReiniciar;
+    private javax.swing.JButton BttnSalir;
+    private javax.swing.JLabel LabelDif;
+    private javax.swing.JLabel LabelPuntaje;
+    private javax.swing.JLabel LabelTiempo;
+    private javax.swing.JList<String> LstPal;
+    private javax.swing.JTextField TxtIntento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
+}
