@@ -204,6 +204,7 @@ private void finalizarJuego() {
     String mensaje;
     if (porcentaje >= 80.0) {
         mensaje = "✅ Red protegida con éxito\nAciertos: " + aciertos + " / " + totalComprometidos + " (" + Math.round(porcentaje) + "%)";
+        Main.puntajeFirewallMatrix+=aciertos;
     } else {
         mensaje = "❌ Red comprometida\nAciertos: " + aciertos + " / " + totalComprometidos + " (" + Math.round(porcentaje) + "%)";
     }
@@ -326,6 +327,7 @@ private void inicializarBindings() {
         initComponents();
         inicializarBindings();
         styleSimpleUI();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -558,6 +560,11 @@ private void inicializarBindings() {
         lblPuertosrestantes.setText("Comprometidos restantes: N");
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseClicked(evt);
+            }
+        });
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -760,7 +767,7 @@ private void inicializarBindings() {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-            this.dispose();
+        
 
     }//GEN-LAST:event_btnCerrarActionPerformed
 
@@ -934,6 +941,14 @@ private void inicializarBindings() {
                                                             verificarBloqueo(4, 4);
 
     }//GEN-LAST:event_btn24MouseClicked
+
+    private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
+        // TODO add your handling code here:
+        FramePrincipal frame = new  FramePrincipal();
+        frame.setVisible(true);
+        FirewallMatrix.this.setVisible(false);
+        
+    }//GEN-LAST:event_btnCerrarMouseClicked
 
     /**
      * @param args the command line arguments

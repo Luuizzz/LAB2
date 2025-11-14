@@ -18,6 +18,7 @@ import javax.swing.Timer;
 
 
 public class FrameCryptoBreaker extends javax.swing.JFrame {
+    
     int pistas = 0;
     int palabrasAdivinadas = 0;
     int tiempo=0;    
@@ -32,14 +33,22 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     String []palabra;
     String[] listaCifrada;
     public FrameCryptoBreaker() {
+        
         initComponents();
+        this.setLocationRelativeTo(null);
+        aplicarEstilos();
+        
         timerPregunta = new Timer(1000, new ActionListener() {
         
         @Override
         public void actionPerformed(ActionEvent e) {
 
             if (tiempo <= 0) {
-                timerPregunta.stop();         
+                timerPregunta.stop(); 
+                JOptionPane.showMessageDialog(null, "Perdiste, se te acabo el tiempo.\n" + "Te faltaron " + (tamaño - palabrasAdivinadas) + " palabras.\n");
+                TxtIntento.setEnabled(false);
+                BttnComprobar.setEnabled(false);
+                guardarresultados();
             } else {
                 tiempo--; 
                 LabelTiempo.setText(String.valueOf(tiempo));
@@ -47,7 +56,109 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
         }
     });
     }
+    private void aplicarEstilos() {
+    java.awt.Color fondo = new java.awt.Color(10, 35, 70);
+    java.awt.Color colorItems = new java.awt.Color(18, 40, 65);
+    java.awt.Color colorTexto = new java.awt.Color(220, 230, 240);
+    java.awt.Color azulBtn = new java.awt.Color(40, 120, 220);
+    java.awt.Color verdeBtn = new java.awt.Color(24, 160, 100);
+    java.awt.Color naranjaBtn = new java.awt.Color(245, 130, 35);
+    java.awt.Color rojoBtn = new java.awt.Color(200, 40, 40);
+    getContentPane().setBackground(fondo);
+    java.awt.Font labelFont = new java.awt.Font("SansSerif", java.awt.Font.BOLD, 14);
+    java.awt.Font indicadorFont = new java.awt.Font("SansSerif", java.awt.Font.BOLD, 16);
     
+
+    if (jLabel1 != null) { 
+        jLabel1.setFont(labelFont);
+        jLabel1.setForeground(colorTexto);
+    }
+    if (jLabel2 != null) { 
+        jLabel2.setFont(labelFont);
+        jLabel2.setForeground(colorTexto);
+    }
+    if (jLabel3 != null) { 
+        jLabel3.setFont(labelFont);
+        jLabel3.setForeground(colorTexto);
+    }
+    if (jLabel4 != null) { 
+    jLabel4.setFont(labelFont);
+    jLabel4.setForeground(colorTexto);
+    }
+
+ 
+    if (LabelDif != null) {
+        LabelDif.setFont(indicadorFont);
+        LabelDif.setForeground(java.awt.Color.WHITE);
+    }
+    if (LabelTiempo != null) {
+        LabelTiempo.setFont(indicadorFont);
+        LabelTiempo.setForeground(java.awt.Color.WHITE);
+    }
+    if (LabelPuntaje != null) {
+        LabelPuntaje.setFont(indicadorFont);
+        LabelPuntaje.setForeground(java.awt.Color.WHITE);
+    }
+
+    java.awt.Font botonFont = new java.awt.Font("SansSerif", java.awt.Font.BOLD, 13);
+
+    if (BttnIniciar != null) {
+        BttnIniciar.setBackground(azulBtn);
+        BttnIniciar.setForeground(java.awt.Color.WHITE);
+        BttnIniciar.setOpaque(true);
+        BttnIniciar.setBorder(javax.swing.BorderFactory.createLineBorder(azulBtn.darker()));
+        BttnIniciar.setFont(botonFont);
+    }
+    if (BttnComprobar != null) {
+        BttnComprobar.setBackground(verdeBtn);
+        BttnComprobar.setForeground(java.awt.Color.WHITE);
+        BttnComprobar.setOpaque(true);
+        BttnComprobar.setBorder(javax.swing.BorderFactory.createLineBorder(verdeBtn.darker()));
+        BttnComprobar.setFont(botonFont);
+    }
+    
+    if (BttnReiniciar != null) {
+        BttnReiniciar.setBackground(naranjaBtn);
+        BttnReiniciar.setForeground(java.awt.Color.WHITE);
+        BttnReiniciar.setOpaque(true);
+        BttnReiniciar.setBorder(javax.swing.BorderFactory.createLineBorder(naranjaBtn.darker()));
+        BttnReiniciar.setFont(botonFont);
+    }
+     if (BttnSalir != null) {
+        BttnSalir.setBackground(rojoBtn);
+        BttnSalir.setForeground(java.awt.Color.WHITE);
+        BttnSalir.setOpaque(true);
+        BttnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(rojoBtn.darker()));
+        BttnSalir.setFont(botonFont);
+    }
+    if (BttnPista != null) { 
+        BttnPista.setBackground(azulBtn);
+        BttnPista.setForeground(java.awt.Color.WHITE);
+        BttnPista.setOpaque(true);
+        BttnPista.setBorder(javax.swing.BorderFactory.createLineBorder(azulBtn.darker()));
+        BttnPista.setFont(botonFont);
+    }
+    
+    if (LstPal != null) {
+        LstPal.setBackground(colorItems);
+        LstPal.setForeground(colorTexto);
+        LstPal.setFont(new java.awt.Font("Monospaced", java.awt.Font.BOLD, 14));
+        LstPal.setSelectionBackground(azulBtn); 
+        LstPal.setSelectionForeground(java.awt.Color.WHITE);
+    }
+    if (jScrollPane1 != null) { 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(azulBtn.darker()));
+    }
+
+    if (TxtIntento != null) {
+        TxtIntento.setBackground(colorItems);
+        TxtIntento.setForeground(java.awt.Color.WHITE); 
+        TxtIntento.setCaretColor(java.awt.Color.WHITE); 
+        TxtIntento.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 14));
+        TxtIntento.setBorder(javax.swing.BorderFactory.createLineBorder(azulBtn.darker()));
+        TxtIntento.setHorizontalAlignment(javax.swing.JTextField.CENTER); 
+    }
+}
     public String[] encriptar(String[] listaPalabras, int clave) {
         listaCifrada = new String[listaPalabras.length];
     for (int i = 0; i < listaPalabras.length; i++) {   
@@ -150,7 +261,6 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
             int numAleatorio1 = r.nextInt(26); 
             char o = (char) ('A' + numAleatorio1);
             
-            // 3. Encripta esa letra aleatoria
             char c = (char) (o + p);
             if (c > 'Z') {
                 c = (char) (c - 26);
@@ -159,6 +269,42 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pista "+ (pistas+1) +"/3\n" +"Ejemplo de letra: La '" + o + "' se convierte en '" + c + ".");
             break;
             
+    }
+    }
+    public void guardarresultados(){
+    int decision = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "¿Deseas guardar tus resultados en un archivo de texto?", 
+            "Guardar Resultados", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+            
+    if (decision != javax.swing.JOptionPane.YES_OPTION) {
+        return; 
+    }
+    javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+    chooser.setDialogTitle("Guardar resultados");
+    chooser.setSelectedFile(new java.io.File("Resultados_CryptoBreaker.txt"));    
+    int sel = chooser.showSaveDialog(this);
+    if (sel != javax.swing.JFileChooser.APPROVE_OPTION) {
+        return;
+    }
+    java.io.File f = chooser.getSelectedFile();
+    try {
+        java.io.BufferedWriter w = new java.io.BufferedWriter(new java.io.FileWriter(f));
+        
+        w.write("CryptoBreaker - Resultados\n");
+        w.write("-----------------------------\n");
+        w.write("Dificultad: " + LabelDif.getText() + "\n");
+        w.write("Puntaje Final: " + puntaje + "\n");
+        w.write("Palabras descifradas: " + palabrasAdivinadas + "\n");
+        w.write("Total de palabras: " + tamaño + "\n");
+        
+        double porcentaje = (tamaño == 0) ? 0 : (100.0 * palabrasAdivinadas / tamaño);
+        w.write(String.format("Porcentaje de acierto: %.2f%%\n", porcentaje));
+        w.flush();
+        w.close();
+        javax.swing.JOptionPane.showMessageDialog(this, "Resultados guardados en: " + f.getAbsolutePath());
+    } catch (java.io.IOException ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error guardando archivo: " + ex.getMessage());
     }
     }
     
@@ -171,6 +317,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         LstPal = new javax.swing.JList<>();
@@ -187,10 +334,13 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
         LabelPuntaje = new javax.swing.JLabel();
         BttnPista = new javax.swing.JButton();
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("CryptoBreaker");
 
+        LstPal.setAutoscrolls(false);
         jScrollPane1.setViewportView(LstPal);
 
         BttnIniciar.setText("Iniciar");
@@ -259,33 +409,36 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(3, 3, 3)
-                        .addComponent(LabelDif)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addGap(4, 4, 4)
-                        .addComponent(LabelTiempo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelPuntaje))
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BttnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BttnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BttnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(TxtIntento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(3, 3, 3)
+                                .addComponent(LabelDif)
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LabelTiempo)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LabelPuntaje))
+                            .addComponent(jLabel1))
+                        .addContainerGap(152, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BttnComprobar)
-                            .addComponent(BttnPista))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BttnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BttnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(BttnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1)
+                            .addComponent(TxtIntento))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BttnComprobar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BttnPista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,12 +455,13 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                     .addComponent(LabelPuntaje))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(BttnPista)))
-                .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BttnPista)
+                        .addGap(33, 33, 33)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BttnComprobar)
                     .addComponent(TxtIntento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -316,7 +470,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                     .addComponent(BttnReiniciar)
                     .addComponent(BttnSalir)
                     .addComponent(BttnIniciar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -327,10 +481,10 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtIntentoActionPerformed
 
     private void BttnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnSalirMouseClicked
-        int confirmar = JOptionPane.showConfirmDialog(null,"De verdad deseas salir?", "Confirmar salida",JOptionPane.YES_NO_OPTION);
-        if(confirmar == JOptionPane.YES_OPTION){
-        this.dispose();
-        }
+        this.setVisible(false);
+        FramePrincipal frame = new FramePrincipal();
+        frame.setVisible(true);
+        
     }//GEN-LAST:event_BttnSalirMouseClicked
 
     private void BttnIniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnIniciarMouseClicked
@@ -353,6 +507,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                     palabrasAdivinadas = 0;
                     pistas = 0;
 
+
                                        
                 } else if (opcion.equals("2")) {
                     JOptionPane.showMessageDialog(null, "Seleccionaste: Medio");
@@ -366,7 +521,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                     timerPregunta.start(); 
                     palabrasAdivinadas = 0;
                     pistas = 0;
-                    
+ 
                     
                 } else if (opcion.equals("3")) {
                     JOptionPane.showMessageDialog(null, "Seleccionaste: Difícil");
@@ -426,6 +581,8 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                 comprobante = true;
                 palabrasAdivinadas = 0;
                 pistas = 0;
+
+                
             }
             
         }else{
@@ -463,9 +620,13 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
         TxtIntento.setText(""); 
         
         if (palabrasAdivinadas == tamaño) {
-            JOptionPane.showMessageDialog(null, "¡FELICITACIONES!\n" + 
-                                                "Has descifrado todas las palabras.\n" +
-                                                "Puntaje Final: " + puntaje);            
+            timerPregunta.stop();
+        JOptionPane.showMessageDialog(null, "¡FELICITACIONES!\n" + "Has descifrado todas las palabras.\n" + "Puntaje Final: " + puntaje);
+        Main.puntajeCryptoBreaker+=puntaje;
+        TxtIntento.setEnabled(false);
+        BttnComprobar.setEnabled(false);
+        guardarresultados();
+
         } else {
             
             JOptionPane.showMessageDialog(null, "¡Correcto!");
@@ -483,6 +644,8 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Incorrecto. Intenta de nuevo.");
         timerPregunta.start();
     }
+    
+    
 
 
     }//GEN-LAST:event_BttnComprobarMouseClicked
@@ -557,6 +720,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     private javax.swing.JLabel LabelTiempo;
     private javax.swing.JList<String> LstPal;
     private javax.swing.JTextField TxtIntento;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

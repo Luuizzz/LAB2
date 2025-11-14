@@ -1,0 +1,15 @@
+[INFO] El usuario Carlos inició sesión desde 192.168.1.50
+[ADVERTENCIA] Intento de inicio de sesión fallido para usuario admin desde 181.22.90.211
+[CRITICO] Múltiples intentos fallidos detectados en cuenta root
+[INFO] Servicio DNS respondió correctamente
+[ALERTA] Escaneo de puertos detectado desde 190.87.23.144
+[INFO] Usuario Laura cerró sesión
+[CRITICO] Firma de ransomware detectada en proceso 1022
+[ADVERTENCIA] IP desconocida 201.55.14.200 intentando acceso
+[INFO] Copia de seguridad completada con éxito
+[CRITICO] Intento de exfiltración de datos bloqueado por firewall
+[ADVERTENCIA] Contraseña inválida para usuario invitado
+[INFO] Servicio web HTTP funcionando en puerto 80
+[ALERTA] Pico de tráfico inusual detectado en puerto 443
+[CRITICO] Intento de escalada de privilegios detectado
+[INFO] Mantenimiento programado completado

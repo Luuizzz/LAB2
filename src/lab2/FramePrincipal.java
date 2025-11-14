@@ -15,16 +15,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FramePrincipal
      */
-   private java.awt.Font loadPixelFont(float size) {
-    try {
-        java.io.InputStream is = getClass().getResourceAsStream("/fonts/PressStart2P.ttf");
-        java.awt.Font base = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, is);
-        return base.deriveFont(size);
-    } catch (Exception e) {
-        // Si falla, usa una fuente por defecto
-        return new java.awt.Font("Monospaced", java.awt.Font.PLAIN, (int) size);
-    }
-}
+
 
     public FramePrincipal() {
         initComponents();
@@ -32,8 +23,16 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonFirewall.setBackground(Color.cyan);
         buttonSecLog.setBackground(Color.cyan);
         buttonPhyshing.setBackground(Color.cyan);
+        actualizar();
+        this.setLocationRelativeTo(null);
         
     }
+    
+    
+    private void actualizar() {
+    labelPuntaje.setText("Puntaje:"+Main.calcularPuntajeGlobal());
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -213,8 +212,10 @@ public class FramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCryptoMouseExited
 
     private void buttonSecLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSecLogMouseClicked
-        FrameSecureLog frame = new FrameSecureLog();
+        FrameSec frame = new FrameSec();
         frame.setVisible(true);
+        
+        FramePrincipal.this.setVisible(false);
         
     }//GEN-LAST:event_buttonSecLogMouseClicked
 
@@ -232,16 +233,19 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void buttonFirewallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFirewallMouseClicked
        FirewallMatrix frame = new FirewallMatrix();
         frame.setVisible(true);
+        FramePrincipal.this.setVisible(false);
     }//GEN-LAST:event_buttonFirewallMouseClicked
 
     private void buttonPhyshingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPhyshingMouseClicked
         FramePhishHunter frame = new FramePhishHunter();
         frame.setVisible(true);
+        FramePrincipal.this.setVisible(false);
     }//GEN-LAST:event_buttonPhyshingMouseClicked
 
     private void buttonCryptoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCryptoMouseClicked
         FrameCryptoBreaker frame = new FrameCryptoBreaker();
         frame.setVisible(true);
+        FramePrincipal.this.setVisible(false);
     }//GEN-LAST:event_buttonCryptoMouseClicked
 
     public static void main(String args[]) {
