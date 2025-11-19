@@ -40,12 +40,12 @@ private void llenarTablaConEventos() {
 
     for (int i = 0; i < eventos.length; i++) {
 
-        // 🔥 Limpia etiquetas tipo [INFO], [CRITICO], etc.
+       
         String eventoVisible = eventos[i].replaceAll("\\[.*?\\]\\s*", "");
 
         modeloEventos.addRow(new Object[]{
                 i + 1,
-                eventoVisible,           // 👈 ahora sin etiquetas
+                eventoVisible,         
                 clasificacionSistema[i],
                 ""
         });
@@ -56,20 +56,21 @@ private void llenarTablaConEventos() {
 
      public FrameSec() {
         initComponents();
+         Musica.reproducirJuego();
         this.setLocationRelativeTo(null);
         personalizarComponentes();
             this.getContentPane().setBackground(new Color(0x0A0F1D));
             configurarTabla();
     
-    estilizarBoton(btnload);
-    estilizarBoton(btnSave);
-    estilizarBotonRojo(Resumen);
-    estilizarBotonRojo(btnrestart);
-    estilizarBotonRojo(btnsalir);
-    estilizarTabla(tabla);
+        estilizarBoton(btnload);
+        estilizarBoton(btnSave);
+        estilizarBotonRojo(Resumen);
+        estilizarBotonRojo(btnrestart);
+        estilizarBotonRojo(btnsalir);
+        estilizarTabla(tabla);
 
-    panel.setBorder(BorderFactory.createLineBorder(new Color(0x00EAFF), 2, true));
-    tabla.setBorder(BorderFactory.createLineBorder(new Color(0x0080FF), 2, true));
+        panel.setBorder(BorderFactory.createLineBorder(new Color(0x00EAFF), 2, true));
+        tabla.setBorder(BorderFactory.createLineBorder(new Color(0x0080FF), 2, true));
     }
     
     
@@ -84,7 +85,7 @@ private void llenarTablaConEventos() {
 
     private void personalizarComponentes() {
     this.getContentPane().setBackground(new Color(0x0A0F1D));
-    this.setBackground(new Color(0x0A0F1D)); // si tienes un panel base
+    this.setBackground(new Color(0x0A0F1D)); 
 }
     private void estilizarBoton(JButton btn) {
     btn.setBackground(new Color(0x0A0F1D));
@@ -120,13 +121,13 @@ private void llenarTablaConEventos() {
     ) {
         @Override
         public boolean isCellEditable(int row, int column) {
-            return column == 3; // solo la del jugador editable
+            return column == 3; 
         }
     };
 
     tabla.setModel(modeloEventos);
 
-    //   Ocultarcolumna 2) 
+    
     tabla.getColumnModel().getColumn(2).setMinWidth(0);
     tabla.getColumnModel().getColumn(2).setMaxWidth(0);
     tabla.getColumnModel().getColumn(2).setPreferredWidth(0);
@@ -160,7 +161,7 @@ private void llenarTablaConEventos() {
         }
     }
 
- //txt con BufferedReader
+
     public void cargarLogsDesdeArchivo(File archivo) {
         if (archivo == null || !archivo.exists()) {
             mostrarMensaje("El archivo no existe.", "Error");
@@ -207,14 +208,14 @@ private void llenarTablaConEventos() {
     public String clasificarEvento(String evento) {
         String e = evento.toLowerCase();
 
-        // CRÍTICO
+        
         if (contiene(e, "multiple failed login", "bruteforce", "brute force",
                 "ransomware", "data exfiltration", "ddos",
                 "malware detected", "privilege escalation", "critical alert")) {
             return "Crítico";
         }
 
-        // SOSPECHOSO
+       
         if (contiene(e, "failed login", "access denied", "invalid password",
                 "port scan", "scan detected", "suspicious",
                 "unknown ip", "unusual", "warning", "alert")) {
@@ -265,6 +266,9 @@ private void llenarTablaConEventos() {
 
         int aciertos = contarAciertos();
         puntajeUltimoResumen = aciertos ; 
+        if (aciertos==0) {
+            puntajeUltimoResumen=-1;
+        }
         return puntajeUltimoResumen;
     }
 
@@ -350,15 +354,17 @@ private void llenarTablaConEventos() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        btnrestart = new javax.swing.JButton();
+        btnsalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnload = new javax.swing.JButton();
         Resumen = new javax.swing.JButton();
-        btnrestart = new javax.swing.JButton();
-        btnsalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -381,6 +387,29 @@ private void llenarTablaConEventos() {
             }
         });
         jScrollPane1.setViewportView(tabla);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 6, 524, 499));
+
+        btnrestart.setFont(new java.awt.Font("ROG Fonts", 3, 24)); // NOI18N
+        btnrestart.setText("Reiniciar");
+        btnrestart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnrestartMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnrestart, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 200, 70));
+
+        btnsalir.setFont(new java.awt.Font("ROG Fonts", 3, 24)); // NOI18N
+        btnsalir.setText("Salir");
+        btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsalirMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 540, 190, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/clunofondo.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -40, 360, 599));
 
         panel.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -418,7 +447,7 @@ private void llenarTablaConEventos() {
                     .addComponent(btnload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Resumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,54 +461,7 @@ private void llenarTablaConEventos() {
                 .addContainerGap(332, Short.MAX_VALUE))
         );
 
-        btnrestart.setFont(new java.awt.Font("ROG Fonts", 3, 24)); // NOI18N
-        btnrestart.setText("Reiniciar");
-        btnrestart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnrestartMouseClicked(evt);
-            }
-        });
-
-        btnsalir.setFont(new java.awt.Font("ROG Fonts", 3, 24)); // NOI18N
-        btnsalir.setText("Salir");
-        btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnsalirMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(btnrestart)
-                        .addGap(67, 67, 67)
-                        .addComponent(btnsalir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnrestart)
-                            .addComponent(btnsalir))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -496,8 +478,8 @@ private void llenarTablaConEventos() {
     }//GEN-LAST:event_btnsalirMouseClicked
 
     private void btnloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloadMouseClicked
-cargarLogsConSelector(this);
-llenarTablaConEventos();
+    cargarLogsConSelector(this);
+    llenarTablaConEventos();
      
 
     }//GEN-LAST:event_btnloadMouseClicked
@@ -581,6 +563,7 @@ llenarTablaConEventos();
     private javax.swing.JButton btnload;
     private javax.swing.JButton btnrestart;
     private javax.swing.JButton btnsalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
     private javax.swing.JTable tabla;

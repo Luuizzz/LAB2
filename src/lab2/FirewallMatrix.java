@@ -207,6 +207,7 @@ private void finalizarJuego() {
         Main.puntajeFirewallMatrix+=aciertos;
     } else {
         mensaje = "❌ Red comprometida\nAciertos: " + aciertos + " / " + totalComprometidos + " (" + Math.round(porcentaje) + "%)";
+        Main.puntajeFirewallMatrix+=-1;
     }
     javax.swing.JOptionPane.showMessageDialog(this, mensaje);
     
@@ -328,6 +329,7 @@ private void inicializarBindings() {
         inicializarBindings();
         styleSimpleUI();
         this.setLocationRelativeTo(null);
+         Musica.reproducirJuego();
     }
 
     /**
@@ -373,10 +375,14 @@ private void inicializarBindings() {
         btnGuardarresultados = new javax.swing.JButton();
         lbltempopregunta = new javax.swing.JLabel();
         btnReiniciar1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitle.setText("CiberDefender Suite: Security Lab");
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 17, 409, 72));
 
         btn00.setText("jButton1");
         btn00.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -384,6 +390,7 @@ private void inicializarBindings() {
                 btn00MouseClicked(evt);
             }
         });
+        getContentPane().add(btn00, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 86, 42));
 
         btn01.setText("jButton1");
         btn01.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -391,6 +398,7 @@ private void inicializarBindings() {
                 btn01MouseClicked(evt);
             }
         });
+        getContentPane().add(btn01, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 86, 42));
 
         btn02.setText("jButton1");
         btn02.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -398,6 +406,7 @@ private void inicializarBindings() {
                 btn02MouseClicked(evt);
             }
         });
+        getContentPane().add(btn02, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 86, 42));
 
         btn03.setText("jButton1");
         btn03.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -405,6 +414,7 @@ private void inicializarBindings() {
                 btn03MouseClicked(evt);
             }
         });
+        getContentPane().add(btn03, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 86, 42));
 
         btn04.setText("jButton1");
         btn04.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -412,6 +422,7 @@ private void inicializarBindings() {
                 btn04MouseClicked(evt);
             }
         });
+        getContentPane().add(btn04, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 86, 42));
 
         btn09.setText("jButton1");
         btn09.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,6 +430,7 @@ private void inicializarBindings() {
                 btn09MouseClicked(evt);
             }
         });
+        getContentPane().add(btn09, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 86, 42));
 
         btn05.setText("jButton1");
         btn05.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -426,6 +438,7 @@ private void inicializarBindings() {
                 btn05MouseClicked(evt);
             }
         });
+        getContentPane().add(btn05, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 86, 42));
 
         btn06.setText("jButton1");
         btn06.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -433,6 +446,7 @@ private void inicializarBindings() {
                 btn06MouseClicked(evt);
             }
         });
+        getContentPane().add(btn06, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 86, 42));
 
         btn07.setText("jButton1");
         btn07.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -440,6 +454,7 @@ private void inicializarBindings() {
                 btn07MouseClicked(evt);
             }
         });
+        getContentPane().add(btn07, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 86, 42));
 
         btn08.setText("jButton1");
         btn08.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -447,6 +462,7 @@ private void inicializarBindings() {
                 btn08MouseClicked(evt);
             }
         });
+        getContentPane().add(btn08, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 86, 42));
 
         btn14.setText("jButton1");
         btn14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -454,6 +470,7 @@ private void inicializarBindings() {
                 btn14MouseClicked(evt);
             }
         });
+        getContentPane().add(btn14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 280, 86, 42));
 
         btn10.setText("jButton1");
         btn10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -461,6 +478,7 @@ private void inicializarBindings() {
                 btn10MouseClicked(evt);
             }
         });
+        getContentPane().add(btn10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 86, 42));
 
         btn11.setText("jButton1");
         btn11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -468,6 +486,7 @@ private void inicializarBindings() {
                 btn11MouseClicked(evt);
             }
         });
+        getContentPane().add(btn11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 86, 42));
 
         btn12.setText("jButton1");
         btn12.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -475,6 +494,7 @@ private void inicializarBindings() {
                 btn12MouseClicked(evt);
             }
         });
+        getContentPane().add(btn12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 86, 42));
 
         btn13.setText("jButton1");
         btn13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -482,6 +502,7 @@ private void inicializarBindings() {
                 btn13MouseClicked(evt);
             }
         });
+        getContentPane().add(btn13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 86, 42));
 
         btn19.setText("jButton1");
         btn19.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -489,6 +510,7 @@ private void inicializarBindings() {
                 btn19MouseClicked(evt);
             }
         });
+        getContentPane().add(btn19, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 86, 42));
 
         btn15.setText("jButton1");
         btn15.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -496,6 +518,7 @@ private void inicializarBindings() {
                 btn15MouseClicked(evt);
             }
         });
+        getContentPane().add(btn15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 86, 42));
 
         btn16.setText("jButton1");
         btn16.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -503,6 +526,7 @@ private void inicializarBindings() {
                 btn16MouseClicked(evt);
             }
         });
+        getContentPane().add(btn16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 86, 42));
 
         btn17.setText("jButton1");
         btn17.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -510,6 +534,7 @@ private void inicializarBindings() {
                 btn17MouseClicked(evt);
             }
         });
+        getContentPane().add(btn17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, 86, 42));
 
         btn18.setText("jButton1");
         btn18.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -517,6 +542,7 @@ private void inicializarBindings() {
                 btn18MouseClicked(evt);
             }
         });
+        getContentPane().add(btn18, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 86, 42));
 
         btn24.setText("jButton1");
         btn24.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -524,6 +550,7 @@ private void inicializarBindings() {
                 btn24MouseClicked(evt);
             }
         });
+        getContentPane().add(btn24, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 86, 42));
 
         btn20.setText("jButton1");
         btn20.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -531,6 +558,7 @@ private void inicializarBindings() {
                 btn20MouseClicked(evt);
             }
         });
+        getContentPane().add(btn20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 86, 42));
 
         btn21.setText("jButton1");
         btn21.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -538,6 +566,7 @@ private void inicializarBindings() {
                 btn21MouseClicked(evt);
             }
         });
+        getContentPane().add(btn21, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 86, 42));
 
         btn22.setText("jButton1");
         btn22.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -545,6 +574,7 @@ private void inicializarBindings() {
                 btn22MouseClicked(evt);
             }
         });
+        getContentPane().add(btn22, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, 86, 42));
 
         btn23.setText("jButton1");
         btn23.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -552,12 +582,16 @@ private void inicializarBindings() {
                 btn23MouseClicked(evt);
             }
         });
+        getContentPane().add(btn23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 86, 42));
 
-        lblAciertos.setText("Aciertos: N");
+        lblAciertos.setText("Aciertos: ");
+        getContentPane().add(lblAciertos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 145, -1));
 
-        lblErrores.setText("Errores: N");
+        lblErrores.setText("Errores: ");
+        getContentPane().add(lblErrores, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, 136, -1));
 
-        lblPuertosrestantes.setText("Comprometidos restantes: N");
+        lblPuertosrestantes.setText("Comprometidos restantes: ");
+        getContentPane().add(lblPuertosrestantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 333, -1));
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -570,6 +604,7 @@ private void inicializarBindings() {
                 btnCerrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, 130, 42));
 
         btnIniciar.setText("Iniciar");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -577,6 +612,7 @@ private void inicializarBindings() {
                 btnIniciarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 130, 42));
 
         btnGuardarresultados.setText("Guardar resultados");
         btnGuardarresultados.addActionListener(new java.awt.event.ActionListener() {
@@ -584,8 +620,10 @@ private void inicializarBindings() {
                 btnGuardarresultadosActionPerformed(evt);
             }
         });
+        getContentPane().add(btnGuardarresultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, -1, 42));
 
         lbltempopregunta.setText("Tiempo:");
+        getContentPane().add(lbltempopregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 45, 134, -1));
 
         btnReiniciar1.setText("Reiniciar");
         btnReiniciar1.addActionListener(new java.awt.event.ActionListener() {
@@ -593,174 +631,11 @@ private void inicializarBindings() {
                 btnReiniciar1ActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReiniciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, 130, 42));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(lblAciertos, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(lblErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(lblPuertosrestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn10)
-                            .addComponent(btn20)
-                            .addComponent(btn23))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn01)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addComponent(btn02)
-                                .addGap(44, 44, 44)
-                                .addComponent(btn03)
-                                .addGap(107, 107, 107))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn15)
-                                    .addComponent(btn21))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn12)
-                                .addGap(237, 237, 237))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn06)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn08)
-                                .addGap(107, 107, 107)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn22)
-                            .addComponent(btn16)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn05)
-                                .addGap(179, 179, 179)
-                                .addComponent(btn07)))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn18)
-                            .addComponent(btn17)
-                            .addComponent(btn13))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnGuardarresultados, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                                        .addComponent(btnReiniciar1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btn09)
-                                            .addComponent(btn19)
-                                            .addComponent(btn24)
-                                            .addComponent(btn04))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn00, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(lbltempopregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
-                                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(24, 24, 24))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09, btn10, btn11, btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19, btn20, btn21, btn22, btn23, btn24});
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCerrar, btnGuardarresultados, btnIniciar, btnReiniciar1});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltempopregunta)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn04)
-                            .addComponent(btn03)
-                            .addComponent(btn02)
-                            .addComponent(btn01)
-                            .addComponent(btn00, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardarresultados, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnReiniciar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn14)
-                            .addComponent(btn13)
-                            .addComponent(btn12)
-                            .addComponent(btn11)
-                            .addComponent(btn10))
-                        .addGap(51, 51, 51)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btn06)
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btn05)
-                                .addComponent(btn07)
-                                .addComponent(btn09)
-                                .addComponent(btn08)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(185, 185, 185)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btn24)
-                                    .addComponent(btn17)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btn23)
-                                    .addComponent(btn15)
-                                    .addComponent(btn16)
-                                    .addComponent(btn18)
-                                    .addComponent(btn19))
-                                .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btn22)
-                                    .addComponent(btn21)
-                                    .addComponent(btn20))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAciertos)
-                    .addComponent(lblErrores)
-                    .addComponent(lblPuertosrestantes))
-                .addGap(33, 33, 33))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCerrar, btnGuardarresultados, btnIniciar, btnReiniciar1});
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09, btn10, btn11, btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19, btn20, btn21, btn22, btn23, btn24});
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/R-removebg-preview.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, 377, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1015,6 +890,7 @@ private void inicializarBindings() {
     private javax.swing.JButton btnGuardarresultados;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnReiniciar1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAciertos;
     private javax.swing.JLabel lblErrores;
     private javax.swing.JLabel lblPuertosrestantes;

@@ -4,6 +4,7 @@
  */
 package lab2;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -37,6 +38,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         aplicarEstilos();
+         Musica.reproducirJuego();
         
         timerPregunta = new Timer(1000, new ActionListener() {
         
@@ -46,8 +48,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
             if (tiempo <= 0) {
                 timerPregunta.stop(); 
                 JOptionPane.showMessageDialog(null, "Perdiste, se te acabo el tiempo.\n" + "Te faltaron " + (tamaño - palabrasAdivinadas) + " palabras.\n");
-                TxtIntento.setEnabled(false);
-                BttnComprobar.setEnabled(false);
+               
                 guardarresultados();
             } else {
                 tiempo--; 
@@ -57,16 +58,18 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     });
     }
     private void aplicarEstilos() {
-    java.awt.Color fondo = new java.awt.Color(10, 35, 70);
+   // java.awt.Color fondo = new java.awt.Color(10, 35, 70);
     java.awt.Color colorItems = new java.awt.Color(18, 40, 65);
     java.awt.Color colorTexto = new java.awt.Color(220, 230, 240);
     java.awt.Color azulBtn = new java.awt.Color(40, 120, 220);
     java.awt.Color verdeBtn = new java.awt.Color(24, 160, 100);
     java.awt.Color naranjaBtn = new java.awt.Color(245, 130, 35);
     java.awt.Color rojoBtn = new java.awt.Color(200, 40, 40);
-    getContentPane().setBackground(fondo);
+  //  getContentPane().setBackground(fondo);
     java.awt.Font labelFont = new java.awt.Font("SansSerif", java.awt.Font.BOLD, 14);
     java.awt.Font indicadorFont = new java.awt.Font("SansSerif", java.awt.Font.BOLD, 16);
+    this.getContentPane().setBackground(new Color(0x0A0F1D));
+    this.setBackground(new Color(0x0A0F1D)); 
     
 
     if (jLabel1 != null) { 
@@ -318,6 +321,7 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         LstPal = new javax.swing.JList<>();
@@ -333,46 +337,64 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
         LabelTiempo = new javax.swing.JLabel();
         LabelPuntaje = new javax.swing.JLabel();
         BttnPista = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel6.setText("jLabel6");
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 0, 12)); // NOI18N
         jLabel1.setText("CryptoBreaker");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 10, -1, -1));
 
         LstPal.setAutoscrolls(false);
         jScrollPane1.setViewportView(LstPal);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 66, 520, 410));
+
+        BttnIniciar.setFont(new java.awt.Font("ROG Fonts", 0, 14)); // NOI18N
         BttnIniciar.setText("Iniciar");
         BttnIniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BttnIniciarMouseClicked(evt);
             }
         });
+        getContentPane().add(BttnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 120, 30));
 
+        BttnSalir.setFont(new java.awt.Font("ROG Fonts", 0, 14)); // NOI18N
         BttnSalir.setText("Salir");
         BttnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BttnSalirMouseClicked(evt);
             }
         });
+        getContentPane().add(BttnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, 89, 30));
 
         jLabel2.setText("Tiempo:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
         jLabel3.setText("Puntaje:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
 
+        BttnReiniciar.setFont(new java.awt.Font("ROG Fonts", 0, 12)); // NOI18N
         BttnReiniciar.setText("Reiniciar");
         BttnReiniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BttnReiniciarMouseClicked(evt);
             }
         });
+        getContentPane().add(BttnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 120, 30));
 
         TxtIntento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtIntentoActionPerformed(evt);
             }
         });
+        getContentPane().add(TxtIntento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 520, -1));
 
         BttnComprobar.setText("Comprobar");
         BttnComprobar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -380,14 +402,19 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                 BttnComprobarMouseClicked(evt);
             }
         });
+        getContentPane().add(BttnComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, -1, -1));
 
         jLabel4.setText("Dificultad:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 44, -1, -1));
 
         LabelDif.setText("            ");
+        getContentPane().add(LabelDif, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 44, -1, -1));
 
         LabelTiempo.setText("            ");
+        getContentPane().add(LabelTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 44, -1, -1));
 
         LabelPuntaje.setText("            ");
+        getContentPane().add(LabelPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 44, -1, -1));
 
         BttnPista.setText("Pista");
         BttnPista.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -400,78 +427,14 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
                 BttnPistaActionPerformed(evt);
             }
         });
+        getContentPane().add(BttnPista, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 490, 91, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(3, 3, 3)
-                                .addComponent(LabelDif)
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LabelTiempo)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LabelPuntaje))
-                            .addComponent(jLabel1))
-                        .addContainerGap(152, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BttnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BttnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(BttnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1)
-                            .addComponent(TxtIntento))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BttnComprobar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BttnPista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(60, 60, 60))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(LabelDif)
-                    .addComponent(LabelTiempo)
-                    .addComponent(LabelPuntaje))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BttnPista)
-                        .addGap(33, 33, 33)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BttnComprobar)
-                    .addComponent(TxtIntento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BttnReiniciar)
-                    .addComponent(BttnSalir)
-                    .addComponent(BttnIniciar))
-                .addGap(21, 21, 21))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/download-removebg-preview (1).png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 129, 463));
+
+        jLabel7.setText(".");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 620, 110, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -623,8 +586,6 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
             timerPregunta.stop();
         JOptionPane.showMessageDialog(null, "¡FELICITACIONES!\n" + "Has descifrado todas las palabras.\n" + "Puntaje Final: " + puntaje);
         Main.puntajeCryptoBreaker+=puntaje;
-        TxtIntento.setEnabled(false);
-        BttnComprobar.setEnabled(false);
         guardarresultados();
 
         } else {
@@ -725,6 +686,9 @@ public class FrameCryptoBreaker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

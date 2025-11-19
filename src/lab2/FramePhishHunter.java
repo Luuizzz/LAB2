@@ -4,18 +4,68 @@
  */
 package lab2;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
 /**
  *
  * @author juluc
  */
 public class FramePhishHunter extends javax.swing.JFrame {
+    
+int vidas = 3;
+int mensajeActual = 0;
+int puntaje = 0;
+Timer timer;
+int tiempoRestante = 10;
 
+
+String[] mensajes = {
+    "Actualiza tu contraseña urgentemente",
+        "Tu factura está disponible",
+        "Gana un iPhone GRATIS ahora",
+        "Tu cuenta será suspendida",
+        "Gracias por tu compra reciente",
+        "Hemos detectado actividad sospechosa",
+        "Reclama tu premio antes de 24 horas",
+        "Tu paquete será enviado mañana",
+        "Verifica tu identidad en este enlace",
+        "Transferencia bancaria recibida"
+};
+
+boolean [] esPhishing = {
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    false
+};
+
+ImageIcon iconSobre = new ImageIcon(getClass().getResource("/lab2/Imagenes/Sobre.png"));
+ImageIcon iconCorrecto = new ImageIcon(getClass().getResource("/lab2/Imagenes/Correcto.png"));
+ImageIcon iconError = new ImageIcon(getClass().getResource("/lab2/Imagenes/Error.png"));
+ImageIcon iconCorazon = new ImageIcon(getClass().getResource("/lab2/Imagenes/Corazon.png"));
+ImageIcon iconCorazonVacio = new ImageIcon(getClass().getResource("/lab2/Imagenes/Corazon Vacio.png"));
+ImageIcon iconAlerta = new ImageIcon(getClass().getResource("/lab2/Imagenes/Error_1.png"));
     /**
      * Creates new form FramePhishHunter
      */
     public FramePhishHunter() {
         initComponents();
+        iniciarJuego();
+         Musica.reproducirJuego();
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +76,323 @@ public class FramePhishHunter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        RDNPhishing = new javax.swing.JRadioButton();
+        RDNSeguro = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabelTiempo = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(5, 10, 20));
+        jPanel1.setToolTipText("");
+        jPanel1.setDoubleBuffered(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(120, 0, 255));
+        jLabel1.setText("Phinish Hunter");
+        jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jLabel1AncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 280, 36));
+
+        jLabel2.setFont(new java.awt.Font("ROG Fonts", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel2.setText("Mensaje:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 440, 20));
+
+        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel3.setText("Icono");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 46, 52, 31));
+
+        jLabel4.setFont(new java.awt.Font("ROG Fonts", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel4.setText("Puntaje:  0");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 6, 120, 31));
+
+        RDNPhishing.setForeground(new java.awt.Color(0, 255, 255));
+        RDNPhishing.setText("Phishing");
+        jPanel1.add(RDNPhishing, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 98, -1));
+
+        RDNSeguro.setForeground(new java.awt.Color(0, 255, 255));
+        RDNSeguro.setText("Seguro");
+        jPanel1.add(RDNSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 98, -1));
+
+        jButton1.setForeground(new java.awt.Color(120, 0, 255));
+        jButton1.setText("Verificar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 122, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel5.setText("Corazon 1");
+        jLabel5.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 65, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("Corazon 2");
+        jLabel6.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 75, -1));
+
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("Corazon 3");
+        jLabel7.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, 70, -1));
+
+        jButton2.setForeground(new java.awt.Color(120, 0, 255));
+        jButton2.setText("Regresar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 660, 122, -1));
+
+        jButton3.setForeground(new java.awt.Color(120, 0, 255));
+        jButton3.setText("Reiniciar");
+        jButton3.setMaximumSize(new java.awt.Dimension(76, 23));
+        jButton3.setMinimumSize(new java.awt.Dimension(76, 23));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 660, 122, -1));
+
+        jLabelTiempo.setForeground(new java.awt.Color(0, 255, 255));
+        jLabelTiempo.setText("Tiempo: 10");
+        jPanel1.add(jLabelTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 53, 83, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/OIP-removebg-preview (3).png"))); // NOI18N
+        jLabel8.setText("jLabel8");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 310, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void iniciarJuego() {
+        jLabel2.setText("Mensaje: ");
+        jLabel3.setIcon(iconSobre);
+        jLabel4.setText("Puntaje: " + puntaje);
+        actualizarCorazones();
+        iniciarTimer();
+    }
+    
+    
+    
+    private void procesarRespuesta() {
+        boolean respuestaJugador = RDNPhishing.isSelected();
+        
+        
+        if (respuestaJugador == esPhishing[mensajeActual]) {
+            jLabel3.setIcon(iconCorrecto);
+            JOptionPane.showMessageDialog(this, "¡Correcto!");
+            
+            puntaje+= 2;
+            actualizarPuntaje();
+            guardarRegistro(mensajes[mensajeActual], respuestaJugador, true);
+        } else {
+            jLabel3.setIcon(iconError);
+            vidas--;
+            actualizarCorazones();
+            JOptionPane.showMessageDialog(this, "Incorrecto");
+            puntaje+=1;          
+            guardarRegistro(mensajes[mensajeActual], respuestaJugador, false);
+            
+            if (vidas == 0) {
+                JOptionPane.showMessageDialog(this, "¡Has Perdido!");
+                reiniciarJuego();
+                return;
+            }
+        }
+        
+        
+        mensajeActual++;
+        
+        if (mensajeActual >= mensajes.length) {
+            JOptionPane.showMessageDialog(this, "¡Has Completado el Juego!");
+            reiniciarJuego();
+            return;
+        }
+        
+        jLabel2.setText(mensajes[mensajeActual]);
+        RDNPhishing.setSelected(false);
+        RDNSeguro.setSelected(false);
+        jLabel3.setIcon(esPhishing[mensajeActual] ? iconAlerta : iconSobre);
+        
+        reiniciarTimer();
+    }
+    
+    
+    private void tiempoAgotado() {
+        vidas--;
+        actualizarCorazones();
+        JOptionPane.showMessageDialog(this, "Se acabó el tiempo. Pierdes una vida.");
+        
+        if (vidas == 0) {
+            JOptionPane.showMessageDialog(this, "¡Has perdido¡");
+            reiniciarJuego();
+            return;
+        }
+        
+        mensajeActual++;
+        
+        if (mensajeActual >= mensajes.length) {
+            JOptionPane.showMessageDialog(this, "¡Has completado el juego!");
+            reiniciarJuego();
+            return;
+        }
+        
+        jLabel2.setText(mensajes[mensajeActual]);
+        jLabel3.setIcon(esPhishing[mensajeActual] ? iconAlerta : iconSobre);
+        RDNPhishing.setSelected(false);
+        RDNSeguro.setSelected(false);
+        
+        reiniciarTimer();
+        
+    }
+    
+    private void actualizarPuntaje() {
+        jLabel4.setText("Puntaje: " + puntaje);
+    }
+    
+    
+    private void actualizarCorazones() {
+        JLabel[] corazones = { jLabel5, jLabel6, jLabel7 };
+        
+        for (int i = 0; i < 3; i++) {
+            if (i < vidas) {
+                corazones[i].setIcon(iconCorazon);
+            }else {
+                corazones[i].setIcon(iconCorazonVacio);
+            }
+        }
+    }
+    
+    private void iniciarTimer() {
+        tiempoRestante = 10;
+        jLabelTiempo.setText("Tiempo: " + tiempoRestante);
+        
+        timer = new javax.swing.Timer(1000,(e) -> {
+        tiempoRestante--;
+        jLabelTiempo.setText("Tiempo: " + tiempoRestante);
+        
+        if (tiempoRestante <= 0) {
+            timer.stop();
+            tiempoAgotado();
+        }
+    });
+        timer.start();
+    }
+    
+    private void reiniciarTimer() {
+        if (timer != null) {
+            timer.stop();
+        }
+        iniciarTimer();
+    }
+    
+    
+    private void guardarRegistro(String mensaje, boolean jugadorPhishing, boolean correcto) {
+        try {
+            String respuestaJugador = jugadorPhishing ? "Phishing" : "Seguro";
+            String resultado = correcto ? "Correcto" : "Incorrecto";
+            
+            String linea = mensaje + " | Jugador: " + respuestaJugador +
+                    "| Resultado: " + resultado +
+                    "| Puntaje: " + puntaje + "\n";
+            
+            try (FileWriter fw = new FileWriter("registro_phishing.txt", true)) {
+                fw.write(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al guardar registro: " + e.getMessage());
+        }
+    }
+    
+    private void reiniciarJuego() {
+        if (timer != null) timer.stop();
+        
+        
+        vidas = 3;
+        mensajeActual = 0;
+        puntaje = 0;
+        tiempoRestante = 10;
+        
+        jLabel2.setText(mensajes[0]);
+        jLabelTiempo.setText("Tiempo: 10");
+        jLabel3.setIcon(iconSobre);
+        
+        actualizarCorazones();
+        actualizarPuntaje();
+
+        
+        RDNPhishing.setSelected(false);
+        RDNSeguro.setSelected(false);
+        
+        iniciarTimer();
+    }
+    
+    
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if (!RDNPhishing.isSelected() && !RDNSeguro.isSelected()){
+            JOptionPane.showMessageDialog(this, "Selecciona una opcion");
+            return;
+        }
+        procesarRespuesta();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        timer.stop();
+        new FramePrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres reiniciar el juego?", "Reiniciar", JOptionPane.YES_NO_OPTION);
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            reiniciarJuego();
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jLabel1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel1AncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1AncestorMoved
 
     /**
      * @param args the command line arguments
@@ -70,13 +422,27 @@ public class FramePhishHunter extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FramePhishHunter().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FramePhishHunter().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton RDNPhishing;
+    private javax.swing.JRadioButton RDNSeguro;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelTiempo;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+  

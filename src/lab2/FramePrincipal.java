@@ -5,6 +5,7 @@
 package lab2;
 
 import java.awt.Color;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,7 +26,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         buttonPhyshing.setBackground(Color.cyan);
         actualizar();
         this.setLocationRelativeTo(null);
-        
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+         this.getContentPane().setBackground(new Color(0x0A0F18));
+        this.setBackground(new Color(0x0A0F1D)); 
+         Musica.reproducirMenu();
     }
     
     
@@ -44,12 +48,14 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         labelvector = new javax.swing.JLabel();
         labelPuntaje = new javax.swing.JLabel();
         Adelante = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         panelLateral = new javax.swing.JPanel();
         buttonPhyshing = new javax.swing.JButton();
         buttonFirewall = new javax.swing.JButton();
@@ -67,37 +73,43 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 153, 153)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("ROG Fonts", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(56, 189, 248));
-        jLabel1.setText("CYBER DEFENDER SUITE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 390, 50));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/moto.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 450, -1));
 
-        jLabel2.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("ROG Fonts", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(56, 189, 248));
+        jLabel1.setText("GRID PROTOCOL");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 390, 50));
+
+        jLabel2.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(226, 232, 240));
         jLabel2.setText("Eventos Analizados:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 220, 60));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 280, 60));
 
-        jLabel3.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(226, 232, 240));
         jLabel3.setText("Vectores de ataque:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 300, 50));
 
         labelvector.setFont(new java.awt.Font("ROG Fonts", 2, 18)); // NOI18N
         labelvector.setForeground(new java.awt.Color(204, 0, 51));
         labelvector.setText("4");
-        jPanel1.add(labelvector, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 30, 30));
+        jPanel1.add(labelvector, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 90, 60));
 
         labelPuntaje.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 0, 18)); // NOI18N
         labelPuntaje.setForeground(new java.awt.Color(0, 153, 153));
         labelPuntaje.setText("LabelPuntaje");
-        jPanel1.add(labelPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+        jPanel1.add(labelPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 240, 70));
 
-        Adelante.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 1, 14)); // NOI18N
+        Adelante.setFont(new java.awt.Font("ROG Fonts STRIX SCAR", 1, 24)); // NOI18N
         Adelante.setForeground(new java.awt.Color(255, 255, 255));
-        Adelante.setText("Selecciona un vector de ataque y lucha!!!!");
-        jPanel1.add(Adelante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 500, 50));
+        Adelante.setText("TRAIN IN THE GRID. EVOLVE OR DISAPPEAR.");
+        jPanel1.add(Adelante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 690, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 520, 580));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/fondozul.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 930, 880));
 
         panelLateral.setBackground(new java.awt.Color(30, 41, 59));
         panelLateral.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(96, 165, 250)));
@@ -172,12 +184,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         panelLateral.add(buttonSecLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 200, 40));
 
-        getContentPane().add(panelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 220, 580));
+        getContentPane().add(panelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 870));
 
         Fondo.setBackground(new java.awt.Color(15, 23, 42));
         Fondo.setForeground(new java.awt.Color(15, 23, 42));
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab2/images/cd.png"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -290,6 +301,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelPuntaje;
     private javax.swing.JLabel labelvector;
